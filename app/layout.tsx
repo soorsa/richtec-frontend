@@ -1,10 +1,9 @@
 // App Layout.tsx
-import FloatingMessageButton from "@/app/_components/FloatingMessage";
 import { notoSans, playFairDisplay } from "@/app/fonts";
-import Footer from "@/components/layout/Footer";
-import Header from "@/components/layout/Header";
+import { QCProvider } from "@/components/utils/QueryClientProvider";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -23,12 +22,24 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         playFairDisplay.variable
       )}
     >
-      <body className="min-h-full flex flex-col font-sans bg-accent">
-        <Header />
-        {children}
-        <FloatingMessageButton />
-        <Footer />
-      </body>
+      <QCProvider>
+        <body className="min-h-full flex flex-col font-sans bg-accent">
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                borderRadius: "4px",
+                fontSize: 12,
+              },
+            }}
+          />
+
+          {/* <Header /> */}
+          {children}
+          {/* <FloatingMessageButton /> */}
+          {/* <Footer /> */}
+        </body>
+      </QCProvider>
     </html>
   );
 }

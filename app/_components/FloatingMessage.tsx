@@ -36,7 +36,7 @@ export default function FloatingMessageButton() {
     <div className="fixed bottom-6 right-6 z-50 font-sans">
       {/* Popover Window */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-85 sm:w-95 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
+        <div className="absolute bottom-16 right-0 w-95 sm:w-95 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
           {/* Header */}
           <div className="bg-slate-900 text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">

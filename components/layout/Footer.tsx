@@ -204,7 +204,7 @@ export default function Footer() {
               <li className="flex items-start space-x-2.5">
                 <MapPin className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                 <span>
-                  102 Industrial Parkway, Suite 400, Chicago, IL 60611
+                  108 Olojo drive, Alaba international market, Ojo, Lagos.
                 </span>
               </li>
               <li className="flex items-center space-x-2.5">

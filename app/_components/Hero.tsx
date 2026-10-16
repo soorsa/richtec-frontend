@@ -95,7 +95,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="relative order-1 sm:order-2 h-40 sm:h-[80vh] w-full rounded-md overflow-hidden">
+      <div className="relative order-1 sm:order-2 h-[40vh] sm:h-[80vh] w-full rounded-md overflow-hidden">
         <Image src={item.image} alt="" fill className="object-cover" />
       </div>
     </div>

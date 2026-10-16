@@ -1,4 +1,4 @@
-import CartItem from "@/app/cart/_components/CartItem";
+import CartItem from "@/app/(index)/cart/_components/CartItem";
 import React from "react";
 interface Props {
   cartItems: CartItem[];

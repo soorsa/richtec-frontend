@@ -74,7 +74,7 @@ export const productsData: Product[] = [
       "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800",
     ],
-    price: 3499.0,
+    price: 349009.0,
   },
   {
     slug: "richtec-double-door-reach-in-freezer",
@@ -93,7 +93,7 @@ export const productsData: Product[] = [
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
     ],
-    price: 4250.0,
+    price: 425000.0,
   },
   {
     slug: "richtec-custom-stainless-steel-prep-table",
@@ -111,7 +111,7 @@ export const productsData: Product[] = [
     images: [
       "https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&q=80&w=800",
     ],
-    price: 680.0,
+    price: 68000.0,
   },
   {
     slug: "richtec-high-temp-conveyor-dishwasher",
@@ -129,7 +129,7 @@ export const productsData: Product[] = [
     images: [
       "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800",
     ],
-    price: 11800.0,
+    price: 1180000.0,
   },
   {
     slug: "richtec-floor-standing-planetary-mixer-30qt",
@@ -147,7 +147,7 @@ export const productsData: Product[] = [
     images: [
       "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800",
     ],
-    price: 2890.0,
+    price: 289000.0,
   },
   {
     slug: "richtec-stainless-steel-exhaust-hood-system",
@@ -165,6 +165,6 @@ export const productsData: Product[] = [
     images: [
       "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800",
     ],
-    price: 3100.0,
+    price: 310000.0,
   },
 ];

@@ -1,5 +1,5 @@
 "use client";
-import CartItemList from "@/app/cart/_components/CartItemList";
+import CartItemList from "@/app/(index)/cart/_components/CartItemList";
 import { Button } from "@/components/ui/button";
 import { getFormattedCurrency } from "@/lib/utils";
 import { useShoppingBag } from "@/store/shoppingcart.store";

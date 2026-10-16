@@ -60,7 +60,7 @@ const Header = () => {
         )}
       >
         <div className="">
-          <div className="flex items-center justify-between px-4 sm:px-8 lg:px-20">
+          <div className="flex items-center justify-between px-4 sm:px-8 lg:px-20 ">
             <Link
               href="/"
               className="relative w-30 sm:w-50 h-10 sm:h-14"
@@ -82,7 +82,12 @@ const Header = () => {
                   <NavigationMenuItem key={i} className="cursor-pointer">
                     <NavigationMenuLink
                       href={item.path}
-                      className="h-9 bg-transparent px-3 font-medium"
+                      className={cn(
+                        "h-9 bg-transparent px-3",
+                        pathname === item.path
+                          ? "font-bold text-primary bg-linear-to-r from-primary/10 to-transparent"
+                          : "font-medium"
+                      )}
                     >
                       {item.label}
                     </NavigationMenuLink>

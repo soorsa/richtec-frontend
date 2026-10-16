@@ -31,7 +31,7 @@ const ProductCard: React.FC<Prop> = ({ product }) => {
             {product.title}
           </Link>
           <div className="flex justify-between items-center">
-            <div className="text-xs bg-gray-300 text-gray-700 px-2 py-0.5 line-clamp-1 max-w-30">
+            <div className="text-xs bg-gray-300 text-gray-700 px-2 py-0.5 line-clamp-1 w-fit max-w-30">
               {product.category}
             </div>
             <div className="">{getFormattedCurrency(product.price)}</div>
