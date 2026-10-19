@@ -24,7 +24,7 @@ const LoginForm = () => {
     signin(values, {
       onSuccess() {},
       onError(data) {
-        setError(data.response?.data.errors);
+        // setError(data.response?.data.errors);
       },
     });
   }
@@ -36,7 +36,7 @@ const LoginForm = () => {
         validationSchema={signInSchema}
         onSubmit={handleSignIn}
       >
-        {() => (
+        {({ isValid }) => (
           <Form className="space-y-4">
             <div className="space-y-6">
               <Input
@@ -77,7 +77,7 @@ const LoginForm = () => {
               <Button
                 type="submit"
                 className="w-full text-lg font-black tracking-widest! py-6"
-                disabled={isPending}
+                disabled={isPending || !isValid}
               >
                 {isPending && <Loader2 className="size-4" />}
                 {isPending ? "Logging in..." : "Login"}

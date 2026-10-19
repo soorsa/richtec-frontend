@@ -49,7 +49,7 @@ api.interceptors.response.use(
     }
 
     // Don't try to refresh the refresh call itself (prevents loop)
-    if (originalRequest.url?.includes("/auth/refresh")) {
+    if (originalRequest.url?.includes("/auth/token/refresh")) {
       // Refresh failed — force logout
       handleLogout();
       return Promise.reject(error);
@@ -77,8 +77,8 @@ api.interceptors.response.use(
       }
 
       const { data } = await axios.post(
-        `${baseURL}auth/refresh`,
-        { refreshToken },
+        `${baseURL}auth/token/refresh`,
+        { refresh: refreshToken },
         { headers: { "Content-Type": "application/json" } }
       );
 
@@ -112,7 +112,7 @@ function handleLogout() {
   Cookies.remove("access_token");
   Cookies.remove("refresh_token");
   Cookies.remove("user_role");
-  window.location.href = "/auth/login";
+  window.location.href = "/admin";
 }
 
 export default api;

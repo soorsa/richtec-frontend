@@ -1,27 +1,31 @@
 "use client";
 import Input from "@/components/form/Input";
 import { Button } from "@/components/ui/button";
-import { useLogin } from "@/hooks/query/useAuth";
-import { signInSchema } from "@/lib/validations";
+import { useSignUp } from "@/hooks/query/useAuth";
+import { SignUpSchema } from "@/lib/validations";
 import { Form, Formik } from "formik";
-import { Eye, EyeOff, Loader2, LockKeyhole, Mail } from "lucide-react";
+import { Eye, EyeOff, Loader2, LockKeyhole, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 const initialValues = {
   email: "",
   password: "",
+  first_name: "",
+  last_name: "",
+  role: "staff",
+  phone_number: "",
 };
 const SignupForm = () => {
   const [showPassword, setshowPassword] = React.useState(false);
   const [error, setError] = React.useState<string | string[]>();
-  const { mutate: signin, isPending } = useLogin();
+  const { mutate: signUp, isPending } = useSignUp();
   const togglePassword = () => {
     setshowPassword(!showPassword);
   };
 
-  function handleSignIn(values: typeof initialValues) {
-    signin(values, {
+  function handleSignUp(values: typeof initialValues) {
+    signUp(values, {
       onSuccess() {},
       onError(data) {
         setError(data.response?.data.errors);
@@ -33,10 +37,10 @@ const SignupForm = () => {
       <Formik
         initialValues={initialValues}
         validateOnMount
-        validationSchema={signInSchema}
-        onSubmit={handleSignIn}
+        validationSchema={SignUpSchema}
+        onSubmit={handleSignUp}
       >
-        {() => (
+        {({ isValid }) => (
           <Form className="space-y-4">
             <div className="space-y-6">
               <div className="grid grid-cols-2 gap-2">
@@ -44,14 +48,14 @@ const SignupForm = () => {
                   label="First name"
                   labelClassName="text-sm"
                   name="first_name"
-                  placeholder="name@company.com"
+                  placeholder="John"
                   className="bg-gray-200"
                 />
                 <Input
                   label="Last name"
                   labelClassName="text-sm"
                   name="last_name"
-                  placeholder="name@company.com"
+                  placeholder="Doe"
                   className="bg-gray-200"
                 />
               </div>
@@ -65,11 +69,12 @@ const SignupForm = () => {
               />
               <Input
                 label="Phone Number"
+                type="tel"
                 labelClassName="text-sm"
                 name="phone_number"
-                placeholder="name@company.com"
+                placeholder="2348123456789"
                 className="bg-gray-200"
-                icon={<Mail className="text-gray-500 size-4.5" />}
+                icon={<Phone className="text-gray-500 size-4.5" />}
               />
               <Input
                 label="Password"
@@ -90,7 +95,7 @@ const SignupForm = () => {
               <Button
                 type="submit"
                 className="w-full text-lg font-black tracking-widest! py-6"
-                disabled={isPending}
+                disabled={isPending || !isValid}
               >
                 {isPending && <Loader2 className="size-4" />}
                 {isPending ? "Creating account..." : "Signup"}
@@ -99,7 +104,7 @@ const SignupForm = () => {
             <div className="text-center text-sm">
               Don&apos;t have an account?{" "}
               <Link href="/auth/sign-up" className="text-primary font-semibold">
-                Sign up
+                Sign in
               </Link>
             </div>
           </Form>

@@ -1,6 +1,7 @@
 "use client";
 
 import LoginForm from "@/app/admin/_components/LoginForm";
+import SignupForm from "@/app/admin/_components/SignupForm";
 import { cn } from "cn";
 import { Info } from "lucide-react";
 import React from "react";
@@ -22,7 +23,7 @@ const WelcomePage = () => {
         </div>
       </div>
       <div className="flex items-center justify-center bg-white">
-        <div className="w-full sm:w-2/3 p-4 space-y-15">
+        <div className="w-full sm:w-2/3 p-4 space-y-5">
           <div className="space-y-2">
             <div className="grid grid-cols-2 bg-gray-300 rounded-md p-2">
               {actions.map((item) => (
@@ -46,7 +47,8 @@ const WelcomePage = () => {
               </p>
             </div>
           </div>
-          <LoginForm />
+          {action === "login" && <LoginForm />}
+          {action === "register" && <SignupForm />}
         </div>
       </div>
     </div>

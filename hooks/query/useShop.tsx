@@ -19,16 +19,17 @@ export const useGetProducts = (filters: ProductFilterParams = {}) => {
   });
 };
 export const useGetCategories = (filters: CategoryFilterParams = {}) => {
-  const { name } = filters;
+  const { title, page_size } = filters;
 
-  return useQuery<PaginatedResponse<Product>>({
+  return useQuery<PaginatedResponse<Category>>({
     queryKey: ["categories", filters],
     queryFn: async () => {
       const params = new URLSearchParams();
 
       //   if (page) params.append("page", page.toString());
       //   if (search) params.append("search", search);
-      if (name) params.append("name", name);
+      if (page_size) params.append("page_size", page_size.toString());
+      if (title) params.append("title", title);
 
       const response = await api.get(`/categories?${params.toString()}`);
       return response.data;

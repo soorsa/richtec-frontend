@@ -2,11 +2,23 @@
 import Input from "@/components/form/Input";
 import SearchableSelect from "@/components/form/Select";
 import { Button } from "@/components/ui/button";
+import { useGetCategories } from "@/hooks/query/useShop";
 import { cn } from "cn";
 import { Form, Formik } from "formik";
 import { SlidersHorizontal } from "lucide-react";
 
 const ProductFilter = () => {
+  const { data } = useGetCategories({ page_size: 100 });
+  const categories = data?.results || [];
+  const categoryOption = categories.map((item) => ({
+    label: item.title,
+    value: item.slug,
+    icon: (
+      <div className="size-6 flex justify-center items-center bg-gray-100 rounded">
+        <img src={item.thumbnail} alt={item.title} className="size-3" />
+      </div>
+    ),
+  }));
   const initialValues = {
     search: "",
     category: "",
@@ -38,7 +50,7 @@ const ProductFilter = () => {
                   label="Category"
                   labelClassName="text-xs text-gray-500!"
                   name="category"
-                  options={[{ label: "Kitchen", value: "kitchen" }]}
+                  options={categoryOption}
                   placeholder="Select category"
                   className="py-2! rounded-sm bg-gray-200"
                 />

@@ -2,6 +2,7 @@
 // components/Header.tsx
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -12,9 +13,10 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import ShoppingCartModal from "@/components/utils/ShoppingCartModal";
-import { Categories, navigation } from "@/data/constants";
+import { navigation } from "@/data/constants";
+import { useGetCategories } from "@/hooks/query/useShop";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Menu, ShoppingBag, X } from "lucide-react";
+import { ChevronDown, Menu, ShoppingBag, Tag, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -26,7 +28,10 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<boolean>(false);
   const pathname = usePathname();
-
+  const { data: categoryData, isLoading: isGettingCategory } = useGetCategories(
+    { page_size: 500 }
+  );
+  const categories = categoryData?.results || [];
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -99,14 +104,23 @@ const Header = () => {
                   </NavigationMenuTrigger>
 
                   <NavigationMenuContent>
-                    <div className="flex w-fit flex-col gap-2 p-6">
-                      {Categories.map((cat, j) => (
+                    <div className="flex w-fit flex-col min-w-60">
+                      {categories.map((cat, j) => (
                         <Link
-                          href={cat.href ? cat.href : "#services"}
+                          href={`/shop/${cat.slug}`}
                           key={j}
                           className="flex items-center gap-2 border-b border-transparent py-2 text-sm hover:border-gray-200"
                         >
-                          <span>{cat.name}</span>
+                          <Avatar className="size-7 flex justify-center items-center rounded after:border-none bg-gray-100">
+                            <AvatarImage
+                              className={cn("rounded size-4")}
+                              src={cat.thumbnail}
+                            />
+                            <AvatarFallback className={cn("rounded")}>
+                              <Tag />
+                            </AvatarFallback>
+                          </Avatar>
+                          <span>{cat.title}</span>
                         </Link>
                       ))}
                     </div>
@@ -214,14 +228,14 @@ const Header = () => {
                 )}
               >
                 <div className="ml-3 space-y-1 border-l border-gray-200 pl-3">
-                  {Categories.map((sub, j) => (
+                  {categories.map((cat, j) => (
                     <Link
                       key={j}
-                      href={sub.href ? sub.href : "#services"}
+                      href={`/shop/${cat.slug}`}
                       onClick={() => setIsOpen(false)}
                       className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-50 hover:text-gray-900"
                     >
-                      <span>{sub.name}</span>
+                      <span>{cat.title}</span>
                     </Link>
                   ))}
                 </div>

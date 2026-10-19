@@ -1,3 +1,9 @@
+import Overview from "@/app/admin/dashboard/_components/pages/Overview";
+
 export default function page() {
-  return <div>page</div>;
+  return (
+    <div>
+      <Overview />
+    </div>
+  );
 }

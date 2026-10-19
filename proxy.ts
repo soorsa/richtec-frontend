@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 export function proxy(request: NextRequest) {
-  const token = request.cookies.get("auth_token")?.value;
+  const token = request.cookies.get("access_token")?.value;
   const role = request.cookies.get("role")?.value;
   const { pathname } = request.nextUrl;
   // console.log({
@@ -17,6 +17,7 @@ export function proxy(request: NextRequest) {
     "/singup",
     "/forgot-password",
     "/reset-password",
+    "/admin",
   ];
   const isAuthRoute = authRoutes.some(
     (route) => pathname === route || pathname.startsWith(route + "?")
@@ -31,10 +32,10 @@ export function proxy(request: NextRequest) {
   // If trying to access auth route while logged in - redirect to dashboard
   if (token && isAuthRoute) {
     console.log("yes token");
-    if (role === "admin") {
+    if (role === "admin" || "staff") {
       return NextResponse.redirect(dashboardUrl);
     }
-    return NextResponse.redirect(adminLoginUrl);
+    return NextResponse.redirect("/");
   }
 
   // If no token and trying to access protected route - redirect to login

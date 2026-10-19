@@ -1,4 +1,16 @@
-import { Home, Info, PhoneCall, Store } from "lucide-react";
+import {
+  ChartNetwork,
+  Home,
+  Image,
+  Info,
+  LayoutTemplate,
+  Package,
+  PhoneCall,
+  ShoppingCart,
+  Store,
+  Tags,
+  Users,
+} from "lucide-react";
 
 class Navigation {
   landing = [
@@ -21,6 +33,43 @@ class Navigation {
       label: "Contact Us",
       icon: PhoneCall,
       path: "/contact",
+    },
+  ];
+  admin = [
+    {
+      label: "Overview",
+      icon: LayoutTemplate,
+      path: "/admin/dashboard",
+    },
+    {
+      label: "Users",
+      icon: Users,
+      path: "/admin/dashboard/users",
+    },
+    {
+      label: "Categories",
+      icon: Tags,
+      path: "/admin/dashboard/categories",
+    },
+    {
+      label: "Products",
+      icon: ShoppingCart,
+      path: "/admin/dashboard/products",
+    },
+    {
+      label: "Orders",
+      icon: Package,
+      path: "/admin/dashboard/orders",
+    },
+    {
+      label: "Report",
+      icon: ChartNetwork,
+      path: "/admin/dashboard/reports",
+    },
+    {
+      label: "Media",
+      icon: Image,
+      path: "/admin/dashboard/media",
     },
   ];
 }
