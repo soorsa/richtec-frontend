@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "cn";
 import { useField } from "formik";
 import { FileText, FileUp, Trash2 } from "lucide-react";
 import React, { useCallback } from "react";
@@ -8,6 +9,7 @@ import { Accept, useDropzone } from "react-dropzone";
 interface FileInputProps {
   name: string;
   label: string;
+  labelClassName?: string;
   multiple?: boolean;
   accept?: string[];
   maxSize?: number;
@@ -17,6 +19,7 @@ interface FileInputProps {
 const FileInput: React.FC<FileInputProps> = ({
   name,
   label,
+  labelClassName,
   multiple = false,
   accept = [".pdf"],
   maxSize = 5 * 1024 * 1024, // 5MB default limit
@@ -78,7 +81,10 @@ const FileInput: React.FC<FileInputProps> = ({
       {label && (
         <label
           htmlFor={name}
-          className="block mb-2 text-sm font-semibold text-gray-700"
+          className={cn(
+            "block mb-2 text-sm font-semibold text-gray-700",
+            labelClassName
+          )}
         >
           {label}
         </label>

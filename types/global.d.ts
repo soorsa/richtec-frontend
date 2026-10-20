@@ -1,11 +1,21 @@
+interface ProductImage {
+  id: number;
+  image: string;
+}
+
 interface Product {
+  id: 0;
   slug: string;
   title: string;
   category: string;
   description: string;
   features: string[];
-  images: string[];
   price: number;
+  thumbnail: string;
+  images: ProductImage[];
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 type CartItem = {
@@ -123,4 +133,16 @@ interface CategoryPayload {
   slug?: string;
   thumbnail?: File;
   is_featured?: boolean;
+}
+
+interface ProductPayload {
+  title?: string;
+  category?: number;
+  tag?: string;
+  price?: string;
+  description?: string;
+  features?: string[];
+  thumbnail?: string;
+  uploaded_images?: File[];
+  is_active?: boolean;
 }

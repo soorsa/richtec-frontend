@@ -14,7 +14,7 @@ const ProductFilter = () => {
     label: item.title,
     value: item.slug,
     icon: (
-      <div className="size-6 flex justify-center items-center bg-gray-100 rounded">
+      <div className="size-6 flex justify-center items-center bg-gray-100 rounded relative">
         <img src={item.thumbnail} alt={item.title} className="size-3" />
       </div>
     ),
